@@ -10,7 +10,7 @@ def get_ARL(func, type, repeated_times, Max_RL, tau, shift, *args, re="value"):
     with Pool() as pool:
         L = pool.starmap(func, args)
     if re == "value":
-        return ( np.nanmean(L), np.nanstd(L)/np.sqrt(len(L)) )
+        return ( np.mean(L), np.std(L)/np.sqrt(len(L)) )
     elif re == "list":
         return L
     

@@ -1,4 +1,5 @@
 import numpy as np
+import warnings
 
 def aic_k(data, k, M):
     aic = (k-M)*np.log(std_adjust(np.std(data[1:k]))) + (len(data)-M-k)*np.log(std_adjust(np.std(data[k+1:len(data)])))
@@ -25,6 +26,8 @@ def aic_all(data, M):
     return aics
 
 def aic_precise(data, M):
-    aics = aic_all(data, M)
-    aics = np.nan_to_num(aics)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", category=RuntimeWarning)
+        aics = aic_all(data, M)
+        aics = np.nan_to_num(aics)
     return np.argmin(aics)
