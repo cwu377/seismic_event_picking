@@ -22,4 +22,4 @@ def aic_all(data, M):
 def aic_precise(data, M):
     aics = aic_all(data, M)
     aics = np.nan_to_num(aics)
-    return (np.min(aics), np.argmin(aics))
+    return np.argmin(aics)
