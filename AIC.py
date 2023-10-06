@@ -1,9 +1,14 @@
 import numpy as np
 
 def aic_k(data, k, M):
-    aics = list()
-    aic = (k-M)*np.log(np.std(data[1:k])) + (len(data)-M-k)*np.log(np.std(data[k+1:len(data)]))
+    aic = (k-M)*np.log(std_adjust(np.std(data[1:k]))) + (len(data)-M-k)*np.log(std_adjust(np.std(data[k+1:len(data)])))
     return aic
+
+def std_adjust(value):
+    if value!=0:
+        return value
+    elif value == 0:
+        return 0.0000000000000000000000000000000000000001
 
 def aic(data, M):
     aics = list()
