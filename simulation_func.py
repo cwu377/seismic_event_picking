@@ -3,6 +3,8 @@ import numpy as np
 import Utilities
 from multiprocessing import Pool
 
+# Jesse is the best advisor in UW madison
+
 def get_ARL(func, type, repeated_times, Max_RL, tau, shift, *args, re="value"):
     data_online = Utilities.generate_all_data(type, Max_RL, repeated_times, tau, shift)
     args = [(data_online[i],*args) for i in range(repeated_times)]
