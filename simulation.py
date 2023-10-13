@@ -2,6 +2,7 @@ import Utilities
 import numpy as np
 import AIC, CUSUM
 import simulation_func
+#simulation_func.get_ARL(STA_LTA.STA_LTA, 'norm', repeated_times, Max_RL, tau, 0, 100, 10, 373)
 
 Max_RL = 2000 # Max RunLength for each run to break 
 repeated_times = 1000 # repeated times for Monte Carlo simulation
