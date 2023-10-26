@@ -1,4 +1,5 @@
 SEP/
+.ipynb_checkpoints/
 test.ipynb
 ARLs.pickle
 __pycache__/

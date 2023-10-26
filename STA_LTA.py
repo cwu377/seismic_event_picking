@@ -1,8 +1,8 @@
 import numpy as np
 
 def STA(data, N):
-    data_short = data[N:len(data)]
-    return np.sum(data_short)/N
+    data_short = data[(len(data)-N):len(data)]
+    return np.sum(data_short)/(N)
 
 def LTA(data):
     return np.sum(data)/len(data)
