@@ -10,7 +10,7 @@ def cusum_stat(Sn, Zn1, w, sign="+"):
         raise ValueError("sign should be in {+,-}")
 
 
-def cusum(X, mean, sigma, w, threshold):
+def cusum(X, tau, mean, sigma, w, threshold):
     Z = ( X-mean )/sigma
     Sh = 0
     Sl = 0
@@ -18,10 +18,10 @@ def cusum(X, mean, sigma, w, threshold):
         Sh = cusum_stat(Sh, Z[i], w, "+")
         Sl = cusum_stat(Sl, Z[i], w, "-")
         S = np.max([Sh,Sl])
-        if S > threshold:
-            return i
+        if (S > threshold) and (i>tau):
+            return (i-tau)
         if i==(len(X)-1):
-            return i
+            return (i-tau)
         
 def cusum_stat_vec(Sn, Zn1, w, sign="+"):
     l = Sn.shape[0]
@@ -32,7 +32,7 @@ def cusum_stat_vec(Sn, Zn1, w, sign="+"):
     else:
         raise ValueError("sign should be in {+,-}")
         
-def cusum_vec(X, mean, sigma, w, threshold):
+def cusum_vec(X, tau, mean, sigma, w, threshold):
     Z = (X-mean)/sigma
     l = X.shape[0]
     Sh = np.zeros(l)
@@ -43,5 +43,5 @@ def cusum_vec(X, mean, sigma, w, threshold):
         S = np.max([Sh,Sl], axis=0)
         S = -np.sort(-S)
         top_r = np.sum(S[0:5])
-        if top_r > threshold:
-            return i
+        if (top_r > threshold) and (i>tau):
+            return (i-tau)

@@ -7,7 +7,7 @@ from multiprocessing import Pool
 
 def get_ARL(func, type, repeated_times, Max_RL, tau, shift, *args, re="value"):
     data_online = Utilities.generate_all_data(type, Max_RL, repeated_times, tau, shift)
-    args = [(data_online[i],*args) for i in range(repeated_times)]
+    args = [(data_online[i], tau, *args) for i in range(repeated_times)]
     #args = [(data_online[0],Max_RL,M,m,tau,q_lists[0],d,k,r,h) for i in range(repeated_times)]
     with Pool() as pool:
         L = pool.starmap(func, args)

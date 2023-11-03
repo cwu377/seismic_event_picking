@@ -10,6 +10,12 @@ def generate_all_data(type, max_len, repeated_times, tau, shift):
             pass
         elif shift != 0:
             data[:,tau:max_len] = np.random.normal(shift,1, size=(repeated_times, max_len-tau))
+    elif type == 'std':
+        data = np.random.normal(0,1, size=(repeated_times, max_len))
+        if shift == 0:
+            pass
+        elif shift != 0:
+            data[:,tau:max_len] = np.random.normal(0,shift, size=(repeated_times, max_len-tau))
     return data
 
 def serialize(d, filename):
